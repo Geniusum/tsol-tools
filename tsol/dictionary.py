@@ -64,11 +64,4 @@ def parse_wiki_page(wiki_page:str) -> dict[str: list[str]]:
 
     return tsol_words
 
-if __name__ == "__main__":
-    # Testing
-
-    wiki_page = get_wiki_page()
-    words = parse_wiki_page(wiki_page)
-
-    for word in words:
-        print(word)
+DICTIONNARY:list[TsolWord] = parse_wiki_page(get_wiki_page())
