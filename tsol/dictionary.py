@@ -64,4 +64,4 @@ def parse_wiki_page(wiki_page:str) -> dict[str: list[str]]:
 
     return tsol_words
 
-DICTIONNARY:list[TsolWord] = parse_wiki_page(get_wiki_page())
+DICTIONARY:list[TsolWord] = parse_wiki_page(get_wiki_page())
