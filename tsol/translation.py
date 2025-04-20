@@ -134,17 +134,23 @@ class TsolToFrench():
     def __init__(self):
         pass
     
-    def translate(self, text: str):
+    def translate(self, text: str, version:int=2):
         text_lower = text.lower()
         words_used:list[TsolWord] = []
 
         for word in DICTIONARY:
             if word.word.lower() in text_lower and not word in words_used:
                 words_used.append(word)
-        
-        prompt = "You must translate from Tsol (Tsolenian, Tsolènire in French) to French. Tsol is an interpretive language; it does not have a valid grammar, but rather a standard grammar. The speaker is responsible for making themselves understood through the words and concepts available in the language. You will have this portion of the dictionary:\n"
-        for word_used in words_used:
-            prompt += str(word_used) + " | "
-        prompt += "You will have this text to translate: \"" + text + "\" keeping the punctuation, capitalization, and everything else intelligently. Send only the translated text in your message."
+
+        if version == 1:
+            prompt = "You must translate from Tsol (Tsolenian, Tsolènire in French) to French. Tsol is an interpretive language; it does not have a valid grammar, but rather a standard grammar. The speaker is responsible for making themselves understood through the words and concepts available in the language. You will have this portion of the dictionary:\n"
+            for word_used in words_used:
+                prompt += str(word_used) + " | "
+            prompt += "You will have this text to translate: \"" + text + "\" keeping the punctuation, capitalization, and everything else intelligently. Send only the translated text in your message. It's a work of interpretation, you need to find out what the speaker wanted to say with this minimalist language."
+        elif version == 2:
+            prompt = "Translate Tsol (Tsolenian; interpretive lang.) to French. Infer speaker intent. Dictionary:\n"
+            for word_used in words_used:
+                prompt += str(word_used) + " | "
+            prompt += f"Translate: \"{text}\" Preserve punctuation & caps. Output only the translation."
 
         return prompt
