@@ -1,4 +1,6 @@
 import urllib.request, re
+from dictionary import *
+from translation import *
 
 WIKI_URL = "https://mazegroup.org/wiki/index.php/Dictionnaire_Tsol%C3%A8nire_-_Fran%C3%A7ais?action=raw"
 

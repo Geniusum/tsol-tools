@@ -1,7 +1,8 @@
 import readline
 
 print("Importing libraries...")
-from tsol import *
+from tsol.translation import *
+from tsol.dictionary import *
 print("Libraries imported.")
 
 translator = TsolToFrench()

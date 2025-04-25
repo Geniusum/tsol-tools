@@ -1,3 +1,4 @@
+from translation import *
 from dictionary import *
 
 class FrenchToTsol():

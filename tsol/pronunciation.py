@@ -74,7 +74,7 @@ class TsolToPronunciation():
             'Ϡḡ': 'jèjh',
             'cq': 'k',
             'öo': 'owo',
-            'æn': 'eaun',
+            'æn': 'aun',
             'œn': 'on',
             'oσ': 'ou',
             'kc': 'x',
@@ -82,18 +82,18 @@ class TsolToPronunciation():
             'ие': 'y',
             'ḳч': 'khch',
             'ḡч': 'ghch',
-            'ck': 'kk',
+            'qk': 'kk',
             'ðз': 'ds',
             # Special
-            't ': 'te',
+            't ': 'te ',
             'in': 'ïhn',
             'ge': 'gué',
             # Single
             'a': 'ä',
             'æ': 'an',
             'ð': 'd',
-            'o': 'ö',
             'ö': 'ow',
+            'o': 'ö',
             't': 't',
             'ŧ': 'ts',
             'e': 'ë',
@@ -121,12 +121,30 @@ class TsolToPronunciation():
             'л': 'l',
             'ч': 'ch',
             'ŋ': 'èn',
-            'œ': 'en'
+            'œ': 'en',
+            # Special
+            'gum': 'gm',
+            'gur': 'gr',
+            'gud': 'gd',
+            'gun': 'gn',
+            'gub': 'gb',
+            'è': 'e',
+            'y': 'ïe',
+            'ïeen': 'ïèn',
+            'guhsh': 'jhesh',
+            'gu ': 'g ',
+            'pz': 'ps',
+            'enld': 'èld',
+            'të ': 't ',
+            'tsek': 'sek'
         }
 
     def translate(self, text: str, vocal_mode: bool=False) -> str:
-        text_lower = text.lower()
+        text_lower = text.lower().replace("ς", "σ") + " "
         if vocal_mode:
-            return ''.join(self.vocal_map.get(char, char) for char in text_lower)
+            for find, rep in self.vocal_map.items():
+                text_lower = text_lower.replace(find.lower(), rep.lower())
         else:
-            return ''.join(self.base_map.get(char, char) for char in text_lower)
+            for find, rep in self.base_map.items():
+                text_lower = text_lower.replace(find.lower(), rep.lower())
+        return text_lower.strip()
